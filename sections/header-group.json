@@ -1,54 +1,88 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "settings": {
-        "color_scheme": "scheme-3",
-        "show_line_separator": true,
-        "show_social": false,
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "enable_country_selector": true,
-        "enable_language_selector": true
-      },
       "blocks": {
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
             "text": "COMPLIMENTARY WORLDWIDE INSURED TRANSIT ON ALL TIMEPIECES • SWISS HOROLOGY GUARANTEE",
-            "text_alignment": "center",
-            "color_scheme": "scheme-3",
             "link": ""
           }
         }
       },
       "block_order": [
         "announcement-bar-0"
-      ]
+      ],
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-3",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": true,
+        "enable_language_selector": true
+      }
     },
     "header": {
       "type": "header",
       "settings": {
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
         "logo_position": "middle-left",
+        "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "always",
         "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
         "enable_country_selector": true,
         "enable_language_selector": true,
-        "mobile_logo_position": "center",
         "margin_bottom": 0,
         "padding_top": 16,
         "padding_bottom": 16
       }
+    },
+    "17923970927abe13a7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_56aee35_GPGp8M": {
+          "type": "ai_gen_block_56aee35",
+          "settings": {
+            "collections": [
+              "chains"
+            ],
+            "accessibility_label": "Shop collections",
+            "desktop_width_percent": 100,
+            "alignment": "center",
+            "font_size": 16,
+            "vertical_padding": 12,
+            "text_color": "#F5F5F7",
+            "hover_color": "#DFB76C",
+            "background_color": "#0B0B0E"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_56aee35_GPGp8M"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "17923970927abe13a7"
   ]
 }
