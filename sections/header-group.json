@@ -60,7 +60,12 @@
           "type": "ai_gen_block_56aee35",
           "settings": {
             "collections": [
-              "chains"
+              "chains",
+              "chains-copy",
+              "bangles-copy",
+              "rings-copy",
+              "earrings-copy",
+              "bracelets-copy"
             ],
             "accessibility_label": "Shop collections",
             "desktop_width_percent": 100,
