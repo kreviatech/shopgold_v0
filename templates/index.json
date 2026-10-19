@@ -1,0 +1,245 @@
+{
+  "sections": {
+    "watch_hero": {
+      "type": "watch-hero",
+      "settings": {
+        "eyebrow": "HAUTE HORLOGERIE • GENÈVE EDITION",
+        "heading": "THE ART OF [gold]TIMELESS[/gold] PRECISION",
+        "description": "Handcrafted Swiss mechanical chronometers built with aerospace-grade forged titanium, anti-reflective sapphire crystal, and 72-hour autonomous power reserve.",
+        "image_overlay_opacity": 25,
+        "button_label_1": "EXPLORE TIMEPIECES",
+        "button_link_1": "shopify://collections/all",
+        "button_label_2": "DISCOVER HERITAGE",
+        "button_link_2": "#heritage",
+        "spec_1_val": "300 METERS",
+        "spec_1_lbl": "Water Resistance",
+        "spec_2_val": "COSC CERTIFIED",
+        "spec_2_lbl": "Chronometer Standard",
+        "spec_3_val": "72 HOURS",
+        "spec_3_lbl": "Power Reserve",
+        "spec_4_val": "5-YEAR",
+        "spec_4_lbl": "Global Warranty",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "watch_trust_badges": {
+      "type": "watch-trust-badges",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "heading": "Certified Swiss Origin",
+            "subtext": "Individually serialized & COSC tested"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "heading": "Insured Delivery",
+            "subtext": "Complimentary worldwide express transit"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "warranty",
+            "heading": "5-Year Warranty",
+            "subtext": "Comprehensive international movement cover"
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon": "engraving",
+            "heading": "Bespoke Engraving",
+            "subtext": "Complimentary custom caseback initials"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "watch_collection_showcase": {
+      "type": "watch-collection-showcase",
+      "blocks": {
+        "col_1": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Racing Chronographs",
+            "tag": "Tachymeter Scale"
+          }
+        },
+        "col_2": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Automatic Divers",
+            "tag": "300M Waterproof"
+          }
+        },
+        "col_3": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Tourbillon & Skeleton",
+            "tag": "Haute Complication"
+          }
+        },
+        "col_4": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Classic Dress",
+            "tag": "Guilloché Dials"
+          }
+        }
+      },
+      "block_order": [
+        "col_1",
+        "col_2",
+        "col_3",
+        "col_4"
+      ],
+      "settings": {
+        "eyebrow": "CURATED HOROLOGY SERIES",
+        "heading": "ICONIC TIMEPIECE SERIES",
+        "description": "Engineered for uncompromising accuracy and luxury distinction across every discipline.",
+        "columns_desktop": 4,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "MASTERPIECE TIMEPIECES",
+        "heading_size": "h1",
+        "description": "<p>Individually calibrated and finished by master watchmakers.</p>",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "watch_interactive_specs": {
+      "type": "watch-interactive-specs",
+      "settings": {
+        "eyebrow": "HOROLOGICAL ARCHITECTURE",
+        "heading": "ANATOMY OF A MASTERPIECE",
+        "description": "Every calibre, dial facet, and bezel tooth is manufactured with micron-level precision.",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "watch_heritage": {
+      "type": "watch-heritage",
+      "settings": {
+        "eyebrow": "THE ART OF HOROLOGY",
+        "heading": "CRAFTED FOR ETERNITY",
+        "description": "A mechanical timepiece does not merely measure seconds; it preserves the relentless pursuit of perfection passed down through generations of Swiss master artisans.",
+        "stat_1_num": "380+",
+        "stat_1_lbl": "Hand-Polished Parts",
+        "stat_2_num": "0.001mm",
+        "stat_2_lbl": "Micro-Tolerance",
+        "stat_3_num": "120h",
+        "stat_3_lbl": "Chronometer Testing",
+        "stat_4_num": "100%",
+        "stat_4_lbl": "Swiss Manufactured",
+        "quote": "True luxury is invisible to the casual eye, yet unmistakable upon the wrist.",
+        "author": "Jean-Pierre Laurent, Master Horologist",
+        "button_label": "EXPLORE THE MANUFACTURE",
+        "button_link": "shopify://collections/all",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "watch_collector_reviews": {
+      "type": "watch-collector-reviews",
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "quote": "The dial depth under the double anti-reflective sapphire is hypnotic. You feel like you can reach directly through to the faceted hands.",
+            "author": "Lord Alexander Vance",
+            "model": "Tourbillon Skeleton Noir",
+            "location": "London, UK"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "quote": "The finishing on the bezel and the weight of the solid oyster links surpass timepieces in my collection costing three times as much. Absolute perfection.",
+            "author": "Marcus Sterling",
+            "model": "Chronomaster Apex 42mm",
+            "location": "Zurich, Switzerland"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "quote": "Uncompromising accuracy on my wrist every single day. The customer concierge kept me informed during each testing phase in Geneva.",
+            "author": "Henrietta De Witt",
+            "model": "Diver Automatic 300M",
+            "location": "Monaco"
+          }
+        }
+      },
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3"
+      ],
+      "settings": {
+        "eyebrow": "THE COLLECTOR'S CIRCLE",
+        "heading": "VOICES OF DISTINCTION",
+        "description": "Authentic impressions from passionate horologists and collectors across the globe.",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "watch_vip_club": {
+      "type": "watch-vip-club",
+      "settings": {
+        "eyebrow": "PRIVATE CONCIERGE",
+        "heading": "JOIN THE HOROLOGY SALON",
+        "description": "Receive private allocations on numbered timepiece releases, bespoke invitations to masterclass exhibitions, and our quarterly horological journal.",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "watch_hero",
+    "watch_trust_badges",
+    "watch_collection_showcase",
+    "featured_collection",
+    "watch_interactive_specs",
+    "watch_heritage",
+    "watch_collector_reviews",
+    "watch_vip_club"
+  ]
+}

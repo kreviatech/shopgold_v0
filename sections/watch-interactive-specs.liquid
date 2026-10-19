@@ -1,0 +1,423 @@
+{%- style -%}
+  .watch-specs-{{ section.id }} {
+    background-color: var(--watch-dark-surface);
+    border-top: 1px solid rgba(197, 160, 89, 0.18);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .watch-specs__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .watch-specs__header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 5rem auto;
+  }
+
+  .watch-specs__title {
+    font-size: clamp(2.6rem, 3.8vw, 4.4rem);
+    color: var(--watch-text-primary);
+    margin: 0 0 1.4rem 0;
+  }
+
+  .watch-specs__desc {
+    font-size: 1.5rem;
+    color: var(--watch-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .watch-specs__interactive-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .watch-specs__interactive-wrapper {
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+  }
+
+  /* Visual Center */
+  .watch-specs__visual-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .watch-specs__visual-backdrop {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, transparent 70%);
+    border: 1px dashed rgba(197, 160, 89, 0.2);
+    pointer-events: none;
+  }
+
+  .watch-specs__diagram {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 420px;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+  }
+
+  /* Spec Hotspot Dots */
+  .watch-specs__hotspot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(197, 160, 89, 0.3);
+    border: 1px solid var(--watch-gold-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    transition: all 0.3s ease;
+  }
+
+  .watch-specs__hotspot::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--watch-gold-light);
+    box-shadow: 0 0 10px var(--watch-gold-light);
+  }
+
+  .watch-specs__hotspot:hover,
+  .watch-specs__hotspot.is-active {
+    transform: scale(1.3);
+    background: rgba(197, 160, 89, 0.6);
+    box-shadow: 0 0 15px var(--watch-gold-glow-strong);
+  }
+
+  /* Hotspot Coordinates on dial */
+  .watch-specs__hotspot--1 { top: 22%; left: 48%; } /* Crystal */
+  .watch-specs__hotspot--2 { top: 15%; right: 28%; } /* Bezel */
+  .watch-specs__hotspot--3 { top: 58%; left: 34%; } /* Calibre Sub-dial */
+  .watch-specs__hotspot--4 { top: 48%; left: 58%; } /* Hands / Lume */
+  .watch-specs__hotspot--5 { bottom: 8%; left: 48%; } /* Clasp / Bracelet */
+
+  /* Navigation Tabs & Details Card */
+  .watch-specs__tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .watch-spec-btn {
+    text-align: left;
+    background: rgba(20, 20, 26, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 3px solid transparent;
+    padding: 1.8rem 2.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .watch-spec-btn:hover {
+    background: rgba(197, 160, 89, 0.05);
+    border-color: rgba(197, 160, 89, 0.3);
+  }
+
+  .watch-spec-btn.is-active {
+    background: rgba(24, 24, 32, 0.95);
+    border-color: rgba(197, 160, 89, 0.4);
+    border-left: 3px solid var(--watch-gold-primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  .watch-spec-btn__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .watch-spec-btn__title {
+    font-family: var(--watch-font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--watch-text-primary);
+    margin: 0;
+    transition: color 0.25s ease;
+  }
+
+  .watch-spec-btn.is-active .watch-spec-btn__title {
+    color: var(--watch-gold-light);
+  }
+
+  .watch-spec-btn__num {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--watch-gold-dark);
+    letter-spacing: 0.1em;
+  }
+
+  .watch-spec-btn.is-active .watch-spec-btn__num {
+    color: var(--watch-gold-light);
+  }
+
+  .watch-spec-btn__desc {
+    font-size: 1.35rem;
+    color: var(--watch-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+    display: none;
+  }
+
+  .watch-spec-btn.is-active .watch-spec-btn__desc {
+    display: block;
+    margin-top: 0.4rem;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+{%- endstyle -%}
+
+<section class="watch-specs-{{ section.id }} color-scheme-2" aria-label="Interactive Watch Anatomy">
+  <div class="watch-specs__container">
+    <div class="watch-specs__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="watch-eyebrow">
+          <span>{{ section.settings.eyebrow | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="watch-specs__title">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <p class="watch-specs__desc">
+          {{ section.settings.description | escape }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="watch-specs__interactive-wrapper">
+      <!-- Left: Watch Visual with Clickable Hotspots -->
+      <div class="watch-specs__visual-wrap">
+        <div class="watch-specs__visual-backdrop" aria-hidden="true"></div>
+
+        <button type="button" class="watch-specs__hotspot watch-specs__hotspot--1 is-active" data-spec-index="0" aria-label="Highlight Sapphire Glass"></button>
+        <button type="button" class="watch-specs__hotspot watch-specs__hotspot--2" data-spec-index="1" aria-label="Highlight Ceramic Bezel"></button>
+        <button type="button" class="watch-specs__hotspot watch-specs__hotspot--3" data-spec-index="2" aria-label="Highlight In-House Calibre"></button>
+        <button type="button" class="watch-specs__hotspot watch-specs__hotspot--4" data-spec-index="3" aria-label="Highlight Super-LumiNova"></button>
+        <button type="button" class="watch-specs__hotspot watch-specs__hotspot--5" data-spec-index="4" aria-label="Highlight Oyster Clasp"></button>
+
+        {%- if section.settings.anatomy_image != blank -%}
+          {{
+            section.settings.anatomy_image
+            | image_url: width: 800
+            | image_tag:
+              loading: 'lazy',
+              class: 'watch-specs__diagram',
+              alt: 'Watch Specifications Anatomy'
+          }}
+        {%- else -%}
+          <!-- Master Watch Anatomy Diagram SVG -->
+          <svg class="watch-specs__diagram" viewBox="0 0 450 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="specDialGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#1E1E26"/>
+                <stop offset="60%" stop-color="#101015"/>
+                <stop offset="100%" stop-color="#070709"/>
+              </radialGradient>
+              <radialGradient id="goldCase" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FCEAB3"/>
+                <stop offset="50%" stop-color="#C5A059"/>
+                <stop offset="90%" stop-color="#7B5B21"/>
+              </radialGradient>
+            </defs>
+            <!-- Case & Crown -->
+            <rect x="385" y="212" width="20" height="26" rx="2" fill="url(#goldCase)" stroke="#E5C37A"/>
+            <circle cx="225" cy="225" r="165" fill="url(#goldCase)" stroke="#C5A059" stroke-width="2"/>
+            <circle cx="225" cy="225" r="150" fill="#141419" stroke="#C5A059" stroke-width="3"/>
+            <circle cx="225" cy="225" r="132" fill="url(#specDialGrad)" stroke="#C5A059" stroke-width="1.5"/>
+            <!-- Tachymeter markings -->
+            <circle cx="225" cy="225" r="141" fill="none" stroke="#E5C37A" stroke-width="1" stroke-dasharray="2 4"/>
+            <!-- Skeleton/Complication Apertures -->
+            <circle cx="175" cy="225" r="30" fill="#0C0C0F" stroke="#C5A059" stroke-width="1"/>
+            <circle cx="275" cy="225" r="30" fill="#0C0C0F" stroke="#C5A059" stroke-width="1"/>
+            <circle cx="225" cy="275" r="28" fill="#0C0C0F" stroke="#C5A059" stroke-width="1"/>
+            <!-- Visible Escapement Gear Details -->
+            <path d="M165 220 L185 230 M175 210 L175 240 M185 220 L165 230" stroke="#E5C37A" stroke-width="1.5"/>
+            <circle cx="175" cy="225" r="12" fill="#7B5B21" stroke="#FCEAB3" stroke-width="1"/>
+            <!-- Main Hands -->
+            <polygon points="222,225 225,120 228,225" fill="#FCEAB3" stroke="#987635" stroke-width="1"/>
+            <polygon points="222,225 225,160 228,225" fill="#E5C37A" stroke="#987635" stroke-width="1" transform="rotate(75 225 225)"/>
+            <line x1="225" y1="240" x2="225" y2="105" stroke="#DFB76C" stroke-width="1.5"/>
+            <circle cx="225" cy="225" r="6" fill="#E5C37A"/>
+          </svg>
+        {%- endif -%}
+      </div>
+
+      <!-- Right: Clickable Feature Tabs -->
+      <div class="watch-specs__tabs-container" role="tablist">
+        <button type="button" class="watch-spec-btn is-active" data-spec-index="0" role="tab" aria-selected="true">
+          <div class="watch-spec-btn__top">
+            <h3 class="watch-spec-btn__title">Dual Sapphire Crystal</h3>
+            <span class="watch-spec-btn__num">01</span>
+          </div>
+          <p class="watch-spec-btn__desc">
+            Scratchproof 9 Mohs hardness synthetic sapphire glass with seven layers of anti-reflective treatment on both inner and outer surfaces, delivering distortion-free dial clarity under harsh light.
+          </p>
+        </button>
+
+        <button type="button" class="watch-spec-btn" data-spec-index="1" role="tab" aria-selected="false">
+          <div class="watch-spec-btn__top">
+            <h3 class="watch-spec-btn__title">Ceramic Tachymeter Bezel</h3>
+            <span class="watch-spec-btn__num">02</span>
+          </div>
+          <p class="watch-spec-btn__desc">
+            High-density zirconium oxide ceramic bezel insert engraved with 24k gold numerals. Impervious to ultraviolet fading, thermal expansion, and ocean saltwater corrosion.
+          </p>
+        </button>
+
+        <button type="button" class="watch-spec-btn" data-spec-index="2" role="tab" aria-selected="false">
+          <div class="watch-spec-btn__top">
+            <h3 class="watch-spec-btn__title">In-House Calibre 4130 Movement</h3>
+            <span class="watch-spec-btn__num">03</span>
+          </div>
+          <p class="watch-spec-btn__desc">
+            Swiss COSC-certified self-winding chronograph movement operating at 28,800 vibrations per hour (4Hz) with Paramagnetic blue Parachrom hairspring and 72-hour autonomous power reserve.
+          </p>
+        </button>
+
+        <button type="button" class="watch-spec-btn" data-spec-index="3" role="tab" aria-selected="false">
+          <div class="watch-spec-btn__top">
+            <h3 class="watch-spec-btn__title">Super-LumiNova® Dial Elements</h3>
+            <span class="watch-spec-btn__num">04</span>
+          </div>
+          <p class="watch-spec-btn__desc">
+            Hand-faceted indices and diamond-polished hands generously treated with Grade A Swiss Super-LumiNova® BGW9, emitting a radiant, long-lasting luminescent glow during nocturnal navigation.
+          </p>
+        </button>
+
+        <button type="button" class="watch-spec-btn" data-spec-index="4" role="tab" aria-selected="false">
+          <div class="watch-spec-btn__top">
+            <h3 class="watch-spec-btn__title">Oystersteel & Gold Clasp</h3>
+            <span class="watch-spec-btn__num">05</span>
+          </div>
+          <p class="watch-spec-btn__desc">
+            Forged in aerospace-grade 904L stainless steel and 18K yellow gold, equipped with a folding safety clasp and 5mm micro-adjustment link extension for exceptional wrist comfort.
+          </p>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const section = document.querySelector('.watch-specs-{{ section.id }}');
+      if (!section) return;
+
+      const buttons = section.querySelectorAll('.watch-spec-btn');
+      const hotspots = section.querySelectorAll('.watch-specs__hotspot');
+
+      function setActiveIndex(index) {
+        buttons.forEach((btn, i) => {
+          const isActive = i === index;
+          btn.classList.toggle('is-active', isActive);
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        hotspots.forEach((hs, i) => {
+          hs.classList.toggle('is-active', i === index);
+        });
+      }
+
+      buttons.forEach((btn, i) => {
+        btn.addEventListener('click', () => setActiveIndex(i));
+      });
+
+      hotspots.forEach((hs, i) => {
+        hs.addEventListener('click', () => setActiveIndex(i));
+      });
+    });
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Watch Anatomy Specs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "HOROLOGICAL ARCHITECTURE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "ANATOMY OF A MASTERPIECE"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Every calibre, dial facet, and bezel tooth is manufactured with micron-level precision."
+    },
+    {
+      "type": "image_picker",
+      "id": "anatomy_image",
+      "label": "Watch Anatomy Diagram Image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Watch Anatomy Specs"
+    }
+  ]
+}
+{% endschema %}

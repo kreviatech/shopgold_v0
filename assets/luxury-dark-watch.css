@@ -1,0 +1,619 @@
+/* ==========================================================================
+   LUXURY DARK FASHION WATCH STORE - SIGNATURE STYLES
+   Inspired by Haute Horlogerie & Premium Watchmaking Boutiques
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --watch-font-heading: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --watch-font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Luxury Gold Metallic Palette */
+  --watch-gold-primary: #C5A059;
+  --watch-gold-light: #E5C37A;
+  --watch-gold-pale: #F3E5AB;
+  --watch-gold-dark: #987635;
+  --watch-gold-gradient: linear-gradient(135deg, #F3DA9C 0%, #C5A059 45%, #947230 100%);
+  --watch-gold-glow: rgba(197, 160, 89, 0.25);
+  --watch-gold-glow-strong: rgba(197, 160, 89, 0.45);
+  
+  /* Deep Dark Horology Palette */
+  --watch-dark-pure: #060608;
+  --watch-dark-base: #0B0B0E;
+  --watch-dark-surface: #141419;
+  --watch-dark-elevated: #1B1B22;
+  --watch-dark-card: #15151B;
+  --watch-dark-highlight: #23232C;
+  
+  /* Borders */
+  --watch-border-subtle: rgba(255, 255, 255, 0.08);
+  --watch-border-card: rgba(255, 255, 255, 0.06);
+  --watch-border-gold: rgba(197, 160, 89, 0.35);
+  --watch-border-gold-light: rgba(197, 160, 89, 0.65);
+  
+  /* Text */
+  --watch-text-primary: #F5F5F7;
+  --watch-text-secondary: #A3A3AD;
+  --watch-text-muted: #727280;
+  --watch-text-gold: #DFB76C;
+}
+
+/* Base Body & Scrollbars */
+body {
+  font-family: var(--watch-font-body);
+  background-color: var(--watch-dark-base);
+  color: var(--watch-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--watch-gold-primary);
+  color: #070709;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--watch-dark-pure);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A35;
+  border-radius: 4px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--watch-gold-dark);
+}
+
+/* ==========================================================================
+   Typography Overrides
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5,
+.banner__heading,
+.card__heading,
+.footer-block__heading,
+.header__heading-link,
+.main-page-title,
+.collection__title,
+.product__title {
+  font-family: var(--watch-font-heading) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.watch-serif-heading {
+  font-family: var(--watch-font-heading) !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+}
+
+.watch-gold-text {
+  color: var(--watch-text-gold);
+}
+
+.watch-gold-gradient-text {
+  background: var(--watch-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.watch-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--watch-font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--watch-gold-light);
+  margin-bottom: 1.2rem;
+}
+
+.watch-eyebrow::before,
+.watch-eyebrow::after {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--watch-gold-primary);
+}
+
+/* ==========================================================================
+   Luxury Buttons & CTAs
+   ========================================================================== */
+.button,
+.shopify-challenge__button,
+.customer button {
+  font-family: var(--watch-font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Button (Gold Foil Feel) */
+.button--primary,
+.button:not(.button--secondary):not(.button--tertiary) {
+  background: var(--watch-gold-gradient) !important;
+  color: #070709 !important;
+  border: 1px solid var(--watch-gold-light) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.button--primary::after,
+.button:not(.button--secondary):not(.button--tertiary)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.7s ease;
+}
+
+.button--primary:hover::after,
+.button:not(.button--secondary):not(.button--tertiary):hover::after {
+  left: 150%;
+}
+
+.button--primary:hover,
+.button:not(.button--secondary):not(.button--tertiary):hover {
+  box-shadow: 0 6px 25px var(--watch-gold-glow-strong), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+/* Secondary Button (Obsidian with Gold Outline) */
+.button--secondary {
+  background: rgba(14, 14, 18, 0.85) !important;
+  color: var(--watch-gold-light) !important;
+  border: 1px solid var(--watch-border-gold) !important;
+  backdrop-filter: blur(8px);
+}
+
+.button--secondary:hover {
+  background: var(--watch-gold-primary) !important;
+  color: #070709 !important;
+  border-color: var(--watch-gold-light) !important;
+  box-shadow: 0 6px 20px var(--watch-gold-glow) !important;
+  transform: translateY(-2px);
+}
+
+/* Underline Link Animations */
+.link,
+.link-underline {
+  color: var(--watch-text-gold);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.link:hover,
+.link-underline:hover {
+  color: var(--watch-gold-light);
+}
+
+/* ==========================================================================
+   Header & Sticky Navigation (Frosted Luxury Glass)
+   ========================================================================== */
+.section-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.header-wrapper {
+  background: rgba(11, 11, 14, 0.92) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.18) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.header__heading-link {
+  color: var(--watch-text-primary) !important;
+  font-size: 2.2rem;
+  letter-spacing: 0.18em;
+}
+
+.header__menu-item {
+  color: rgba(245, 245, 247, 0.85) !important;
+  font-family: var(--watch-font-body) !important;
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.header__menu-item:hover,
+.header__menu-item[aria-expanded="true"] {
+  color: var(--watch-gold-light) !important;
+}
+
+.header__icon {
+  color: var(--watch-text-primary) !important;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.header__icon:hover {
+  color: var(--watch-gold-light) !important;
+  transform: translateY(-1px);
+}
+
+.cart-count-bubble {
+  background-color: var(--watch-gold-primary) !important;
+  color: #070709 !important;
+  font-weight: 700 !important;
+  font-family: var(--watch-font-body) !important;
+  box-shadow: 0 0 10px var(--watch-gold-glow-strong);
+}
+
+/* Announcement Bar */
+.announcement-bar {
+  background: var(--watch-dark-pure) !important;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.15) !important;
+}
+
+.announcement-bar__message {
+  font-family: var(--watch-font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--watch-gold-pale) !important;
+  padding: 0.8rem 0;
+}
+
+/* ==========================================================================
+   Product Cards (Dark Horology Showcase)
+   ========================================================================== */
+.card-wrapper {
+  background: transparent;
+}
+
+.card--card,
+.card.color-scheme-2 {
+  background-color: var(--watch-dark-card) !important;
+  border: 1px solid var(--watch-border-card) !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-wrapper:hover .card--card,
+.card-wrapper:hover .card.color-scheme-2 {
+  border-color: var(--watch-border-gold) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(197, 160, 89, 0.1) !important;
+  transform: translateY(-4px);
+}
+
+.card__inner {
+  background: transparent !important;
+}
+
+/* Ensure inner overlay is transparent so the product image is not covered */
+.card__inner .card__content {
+  background: transparent !important;
+  background-color: transparent !important;
+  pointer-events: none;
+}
+
+.card__inner .card__content * {
+  pointer-events: auto;
+}
+
+/* Only the outer text details get the dark card background */
+.card > .card__content {
+  padding: 1.6rem 1.6rem !important;
+  background-color: var(--watch-dark-card);
+}
+
+.card__media {
+  z-index: 1;
+}
+
+.card__media img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
+  filter: contrast(1.03) brightness(0.98);
+}
+
+.card-wrapper:hover .card__media img {
+  transform: scale(1.05);
+}
+
+.card__heading {
+  font-size: 1.45rem !important;
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.08em !important;
+}
+
+.card__heading a {
+  color: var(--watch-text-primary) !important;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.card__heading a:hover {
+  color: var(--watch-gold-light) !important;
+}
+
+.card-information .caption-with-letter-spacing {
+  font-family: var(--watch-font-body);
+  font-size: 1.05rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--watch-gold-primary);
+  margin-bottom: 0.4rem;
+}
+
+/* Price Styling */
+.price {
+  font-family: var(--watch-font-body) !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--watch-text-gold) !important;
+}
+
+.price--on-sale .price-item--regular {
+  color: var(--watch-text-muted) !important;
+  text-decoration: line-through;
+  font-size: 1.3rem !important;
+  margin-right: 0.6rem;
+}
+
+.price-item--sale {
+  color: var(--watch-gold-light) !important;
+  font-weight: 700 !important;
+}
+
+/* Badges */
+.badge {
+  font-family: var(--watch-font-body) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  border-radius: 2px !important;
+  padding: 0.4rem 0.8rem !important;
+  border: 1px solid var(--watch-border-gold) !important;
+  background: rgba(11, 11, 14, 0.9) !important;
+  color: var(--watch-gold-light) !important;
+}
+
+.badge--sale {
+  background: var(--watch-gold-gradient) !important;
+  color: #070709 !important;
+  border-color: var(--watch-gold-light) !important;
+  font-weight: 800 !important;
+}
+
+/* ==========================================================================
+   Slide-out Cart Drawer
+   ========================================================================== */
+.drawer {
+  background: rgba(6, 6, 8, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.drawer__inner {
+  background-color: var(--watch-dark-base) !important;
+  border-left: 1px solid rgba(197, 160, 89, 0.22) !important;
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+.drawer__heading {
+  font-family: var(--watch-font-heading) !important;
+  letter-spacing: 0.15em !important;
+  font-size: 2rem !important;
+  color: var(--watch-text-primary);
+}
+
+.cart-drawer__footer {
+  border-top: 1px solid rgba(197, 160, 89, 0.18) !important;
+  background: #0E0E13 !important;
+}
+
+.cart-item {
+  border-bottom: 1px solid var(--watch-border-subtle);
+  padding: 1.6rem 0;
+}
+
+.cart-item__name {
+  font-family: var(--watch-font-heading);
+  letter-spacing: 0.08em;
+  font-size: 1.4rem;
+  color: var(--watch-text-primary);
+  text-decoration: none;
+}
+
+.cart-item__name:hover {
+  color: var(--watch-gold-light);
+}
+
+/* Quantity Popover / Input */
+.quantity {
+  background-color: var(--watch-dark-surface) !important;
+  border: 1px solid var(--watch-border-subtle) !important;
+  border-radius: 2px;
+}
+
+.quantity__input {
+  color: var(--watch-text-primary) !important;
+}
+
+.quantity__button {
+  color: var(--watch-text-secondary) !important;
+  transition: color 0.2s ease;
+}
+
+.quantity__button:hover {
+  color: var(--watch-gold-light) !important;
+}
+
+/* ==========================================================================
+   Predictive Search & Modals
+   ========================================================================== */
+.predictive-search {
+  background-color: var(--watch-dark-elevated) !important;
+  border: 1px solid var(--watch-border-gold) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85) !important;
+  border-radius: 4px;
+}
+
+.predictive-search__item {
+  border-bottom: 1px solid var(--watch-border-subtle);
+}
+
+.predictive-search__item:hover,
+.predictive-search__item[aria-selected="true"] {
+  background-color: var(--watch-dark-highlight) !important;
+}
+
+.field__input {
+  background-color: var(--watch-dark-surface) !important;
+  border: 1px solid var(--watch-border-subtle) !important;
+  color: var(--watch-text-primary) !important;
+  border-radius: 2px;
+}
+
+.field__input:focus {
+  border-color: var(--watch-gold-primary) !important;
+  box-shadow: 0 0 12px var(--watch-gold-glow) !important;
+}
+
+.field__label {
+  color: var(--watch-text-muted) !important;
+}
+
+/* ==========================================================================
+   Footer (Rich Luxury Obsidian)
+   ========================================================================== */
+.footer {
+  background-color: var(--watch-dark-pure) !important;
+  border-top: 1px solid rgba(197, 160, 89, 0.2) !important;
+}
+
+.footer-block__heading {
+  color: var(--watch-gold-light) !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 1.6rem !important;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-block__heading::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 28px;
+  height: 1px;
+  background: var(--watch-gold-primary);
+}
+
+.footer-block__details-content a {
+  color: var(--watch-text-secondary) !important;
+  font-family: var(--watch-font-body);
+  font-size: 1.35rem;
+  line-height: 2;
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-block;
+}
+
+.footer-block__details-content a:hover {
+  color: var(--watch-gold-light) !important;
+  transform: translateX(3px);
+}
+
+.footer__copyright {
+  border-top: 1px solid var(--watch-border-subtle);
+  color: var(--watch-text-muted);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+
+/* Newsletter Input in Footer */
+.newsletter-form__field-wrapper .field__input {
+  border-radius: 2px 0 0 2px;
+}
+
+.newsletter-form__button {
+  background: var(--watch-gold-gradient) !important;
+  color: #070709 !important;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ==========================================================================
+   Collection Filters & Facets
+   ========================================================================== */
+.facets__summary {
+  font-family: var(--watch-font-body);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--watch-text-primary);
+}
+
+.facets__display {
+  background-color: var(--watch-dark-surface) !important;
+  border: 1px solid var(--watch-border-subtle) !important;
+  border-radius: 4px;
+}
+
+.facet-checkbox input[type="checkbox"]:checked + .icon-checkmark {
+  background-color: var(--watch-gold-primary);
+}
+
+/* ==========================================================================
+   Product Detail Page (Horology Spec Elegance)
+   ========================================================================== */
+.product__title h1 {
+  font-size: 3rem !important;
+  line-height: 1.25;
+}
+
+.product__description {
+  color: var(--watch-text-secondary);
+  line-height: 1.8;
+  font-size: 1.5rem;
+}
+
+.product-form__input input[type='radio']:checked + label {
+  background-color: var(--watch-dark-surface) !important;
+  border-color: var(--watch-gold-primary) !important;
+  color: var(--watch-gold-light) !important;
+  box-shadow: 0 0 10px var(--watch-gold-glow) !important;
+}
+
+/* Collapsible Accordion Tabs */
+.product__accordion .accordion__title {
+  font-family: var(--watch-font-heading);
+  letter-spacing: 0.1em;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: var(--watch-text-primary);
+}
+
+.product__accordion summary:hover .accordion__title {
+  color: var(--watch-gold-light);
+}

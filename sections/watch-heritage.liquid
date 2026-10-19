@@ -1,0 +1,422 @@
+{%- style -%}
+  .watch-heritage-{{ section.id }} {
+    background-color: var(--watch-dark-base);
+    background: radial-gradient(circle at 20% 50%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 11, 14, 0.98) 60%), #0B0B0E;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+    border-top: 1px solid rgba(197, 160, 89, 0.15);
+  }
+
+  .watch-heritage__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4.5rem;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .watch-heritage__container {
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+    }
+  }
+
+  /* Media Side */
+  .watch-heritage__media-wrap {
+    position: relative;
+  }
+
+  .watch-heritage__frame {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--watch-border-gold);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(197, 160, 89, 0.1);
+  }
+
+  .watch-heritage__frame::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 60px;
+    height: 60px;
+    border-top: 2px solid var(--watch-gold-primary);
+    border-left: 2px solid var(--watch-gold-primary);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .watch-heritage__frame::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid var(--watch-gold-primary);
+    border-right: 2px solid var(--watch-gold-primary);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .watch-heritage__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.05) brightness(0.95);
+  }
+
+  .watch-heritage__fallback-svg {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #111116;
+    display: block;
+  }
+
+  .watch-heritage__stamp {
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    background: rgba(17, 17, 22, 0.95);
+    border: 1px solid var(--watch-border-gold);
+    backdrop-filter: blur(10px);
+    padding: 1.4rem 2rem;
+    border-radius: 4px;
+    z-index: 4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  }
+
+  .watch-heritage__stamp-title {
+    font-family: var(--watch-font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--watch-gold-light);
+    letter-spacing: 0.15em;
+    margin: 0;
+  }
+
+  .watch-heritage__stamp-sub {
+    font-size: 1rem;
+    color: var(--watch-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0.2rem 0 0 0;
+  }
+
+  /* Text Side */
+  .watch-heritage__text-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .watch-heritage__title {
+    font-size: clamp(2.8rem, 4vw, 4.6rem);
+    color: #FFFFFF;
+    margin: 0 0 1.8rem 0;
+    line-height: 1.15;
+  }
+
+  .watch-heritage__lead {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: var(--watch-text-secondary);
+    margin: 0 0 3rem 0;
+    font-weight: 300;
+  }
+
+  .watch-heritage__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.2rem 3rem;
+    margin-bottom: 3.5rem;
+    padding: 2.4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .watch-heritage__stat-num {
+    font-family: var(--watch-font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--watch-gold-light);
+    margin: 0 0 0.3rem 0;
+  }
+
+  .watch-heritage__stat-lbl {
+    font-size: 1.15rem;
+    color: var(--watch-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .watch-heritage__quote-box {
+    padding-left: 2rem;
+    border-left: 2px solid var(--watch-gold-primary);
+    margin-bottom: 3.2rem;
+  }
+
+  .watch-heritage__quote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: rgba(245, 245, 247, 0.85);
+    margin: 0 0 0.8rem 0;
+  }
+
+  .watch-heritage__author {
+    font-family: var(--watch-font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--watch-gold-light);
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="watch-heritage-{{ section.id }} color-scheme-1" id="heritage" aria-label="Watchmaking Heritage">
+  <div class="watch-heritage__container">
+    <!-- Left: Macro Watchmaking Media -->
+    <div class="watch-heritage__media-wrap">
+      <div class="watch-heritage__frame">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              class: 'watch-heritage__img',
+              alt: 'Master Watchmaker Atelier'
+          }}
+        {%- else -%}
+          <!-- Atelier Watchmaker Illustration Fallback -->
+          <svg class="watch-heritage__fallback-svg" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="450" fill="#0E0E12"/>
+            <circle cx="300" cy="225" r="180" fill="radial-gradient(circle, #2A2A35 0%, #111116 100%)" stroke="#C5A059" stroke-width="1.5" stroke-opacity="0.3"/>
+            <!-- Intricate Watch Movement Gears & Tourbillon Cage -->
+            <circle cx="300" cy="225" r="140" stroke="#C5A059" stroke-width="2"/>
+            <circle cx="300" cy="225" r="130" stroke="#C5A059" stroke-width="0.8" stroke-dasharray="4 8"/>
+            <circle cx="230" cy="180" r="60" stroke="#E5C37A" stroke-width="1.5"/>
+            <circle cx="230" cy="180" r="15" fill="#7B5B21" stroke="#FCEAB3"/>
+            <circle cx="370" cy="260" r="75" stroke="#E5C37A" stroke-width="1.5"/>
+            <circle cx="370" cy="260" r="18" fill="#7B5B21" stroke="#FCEAB3"/>
+            <!-- Ruby Bearings (Pink synthetic rubies) -->
+            <circle cx="230" cy="180" r="6" fill="#D9386E" stroke="#FFFFFF" stroke-width="0.5"/>
+            <circle cx="370" cy="260" r="6" fill="#D9386E" stroke="#FFFFFF" stroke-width="0.5"/>
+            <circle cx="300" cy="225" r="8" fill="#D9386E" stroke="#FFFFFF" stroke-width="0.5"/>
+            <circle cx="260" cy="285" r="6" fill="#D9386E" stroke="#FFFFFF" stroke-width="0.5"/>
+            <circle cx="330" cy="150" r="6" fill="#D9386E" stroke="#FFFFFF" stroke-width="0.5"/>
+            <!-- Blue Screws -->
+            <circle cx="200" cy="225" r="4" fill="#2E5BFF"/>
+            <circle cx="390" cy="210" r="4" fill="#2E5BFF"/>
+            <circle cx="310" cy="300" r="4" fill="#2E5BFF"/>
+            <!-- Gold Bridge -->
+            <path d="M190 270 Q 300 320 410 270 L 400 240 Q 300 280 200 240 Z" fill="#C5A059" fill-opacity="0.25" stroke="#E5C37A" stroke-width="1.2"/>
+            <text x="300" y="380" text-anchor="middle" fill="#E5C37A" font-family="Cinzel, serif" font-size="14" letter-spacing="4">MANUFACTURE D'HORLOGERIE GENÈVE</text>
+          </svg>
+        {%- endif -%}
+      </div>
+
+      <div class="watch-heritage__stamp">
+        <p class="watch-heritage__stamp-title">GENEVA SEAL STANDARD</p>
+        <p class="watch-heritage__stamp-sub">HAND-FINISHED IN SWITZERLAND</p>
+      </div>
+    </div>
+
+    <!-- Right: Editorial Narrative -->
+    <div class="watch-heritage__text-wrap">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="watch-eyebrow">
+          <span>{{ section.settings.eyebrow | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      <h2 class="watch-heritage__title">
+        {{ section.settings.heading | escape }}
+      </h2>
+
+      <p class="watch-heritage__lead">
+        {{ section.settings.description | escape }}
+      </p>
+
+      <div class="watch-heritage__stats-grid">
+        <div>
+          <div class="watch-heritage__stat-num">{{ section.settings.stat_1_num }}</div>
+          <div class="watch-heritage__stat-lbl">{{ section.settings.stat_1_lbl }}</div>
+        </div>
+        <div>
+          <div class="watch-heritage__stat-num">{{ section.settings.stat_2_num }}</div>
+          <div class="watch-heritage__stat-lbl">{{ section.settings.stat_2_lbl }}</div>
+        </div>
+        <div>
+          <div class="watch-heritage__stat-num">{{ section.settings.stat_3_num }}</div>
+          <div class="watch-heritage__stat-lbl">{{ section.settings.stat_3_lbl }}</div>
+        </div>
+        <div>
+          <div class="watch-heritage__stat-num">{{ section.settings.stat_4_num }}</div>
+          <div class="watch-heritage__stat-lbl">{{ section.settings.stat_4_lbl }}</div>
+        </div>
+      </div>
+
+      {%- if section.settings.quote != blank -%}
+        <div class="watch-heritage__quote-box">
+          <p class="watch-heritage__quote">"{{ section.settings.quote | escape }}"</p>
+          <p class="watch-heritage__author">&mdash; {{ section.settings.author | escape }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <div>
+          <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="button button--secondary">
+            {{ section.settings.button_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Watch Heritage & Craft",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "THE ART OF HOROLOGY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "CRAFTED FOR ETERNITY"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "A mechanical timepiece does not merely measure seconds; it preserves the relentless pursuit of perfection passed down through generations of Swiss master artisans."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Atelier / Watchmaker Image"
+    },
+    {
+      "type": "header",
+      "content": "Heritage Statistics"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_num",
+      "label": "Stat 1 Number",
+      "default": "380+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_lbl",
+      "label": "Stat 1 Label",
+      "default": "Hand-Polished Parts"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_num",
+      "label": "Stat 2 Number",
+      "default": "0.001mm"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_lbl",
+      "label": "Stat 2 Label",
+      "default": "Micro-Tolerance"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_num",
+      "label": "Stat 3 Number",
+      "default": "120h"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_lbl",
+      "label": "Stat 3 Label",
+      "default": "Chronometer Testing"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_num",
+      "label": "Stat 4 Number",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_lbl",
+      "label": "Stat 4 Label",
+      "default": "Swiss Manufactured"
+    },
+    {
+      "type": "header",
+      "content": "Quote & Attribution"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Founder / Artisan Quote",
+      "default": "True luxury is invisible to the casual eye, yet unmistakable upon the wrist."
+    },
+    {
+      "type": "text",
+      "id": "author",
+      "label": "Author Attribution",
+      "default": "Jean-Pierre Laurent, Master Horologist"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "EXPLORE THE MANUFACTURE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Watch Heritage & Craft"
+    }
+  ]
+}
+{% endschema %}

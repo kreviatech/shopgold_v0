@@ -1,0 +1,249 @@
+{%- style -%}
+  .watch-trust-{{ section.id }} {
+    background-color: var(--watch-dark-surface);
+    border-top: 1px solid rgba(197, 160, 89, 0.18);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+  }
+
+  .watch-trust__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .watch-trust__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 600px) {
+    .watch-trust__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.5rem 2.5rem;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .watch-trust__grid {
+      grid-template-columns: repeat({{ section.blocks.size | default: 4 }}, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .watch-trust__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.8rem;
+    padding: 1.5rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+  }
+
+  .watch-trust__card:hover {
+    background: rgba(197, 160, 89, 0.05);
+    border-color: rgba(197, 160, 89, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .watch-trust__icon-wrapper {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.18) 0%, rgba(20, 20, 25, 0.8) 100%);
+    border: 1px solid var(--watch-border-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--watch-gold-light);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .watch-trust__icon-wrapper svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .watch-trust__text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .watch-trust__heading {
+    font-family: var(--watch-font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--watch-text-primary);
+    margin: 0;
+  }
+
+  .watch-trust__subtext {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--watch-text-secondary);
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="watch-trust-{{ section.id }} color-scheme-2" aria-label="Luxury Horology Guarantees">
+  <div class="watch-trust__container">
+    <div class="watch-trust__grid">
+      {%- for block in section.blocks -%}
+        <div class="watch-trust__card" {{ block.shopify_attributes }}>
+          <div class="watch-trust__icon-wrapper" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'shield' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              {%- when 'shipping' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="3" width="15" height="13"/>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                  <circle cx="5.5" cy="18.5" r="2.5"/>
+                  <circle cx="18.5" cy="18.5" r="2.5"/>
+                </svg>
+              {%- when 'warranty' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                  <path d="M12 2v2"/>
+                  <path d="M12 20v2"/>
+                  <path d="M20 12h2"/>
+                  <path d="M2 12h2"/>
+                </svg>
+              {%- when 'engraving' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="6 2 18 2 22 8 12 22 2 8 6 2"/>
+                  <line x1="2" y1="8" x2="22" y2="8"/>
+                  <line x1="12" y1="2" x2="8" y2="8"/>
+                  <line x1="12" y1="2" x2="16" y2="8"/>
+                </svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 8v8"/>
+                  <path d="M8 12h8"/>
+                </svg>
+            {%- endcase -%}
+          </div>
+          <div class="watch-trust__text-content">
+            <h3 class="watch-trust__heading">{{ block.settings.heading | escape }}</h3>
+            <p class="watch-trust__subtext">{{ block.settings.subtext | escape }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Watch Trust Badges",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Swiss Shield / Authenticity" },
+            { "value": "shipping", "label": "Insured Shipping" },
+            { "value": "warranty", "label": "Timepiece Warranty" },
+            { "value": "engraving", "label": "Diamond / Bespoke Craft" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Certified Authenticity"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Individually serialized & COSC certified"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Watch Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "heading": "Certified Swiss Origin",
+            "subtext": "Individually serialized & COSC tested"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "heading": "Insured Delivery",
+            "subtext": "Complimentary insured worldwide transit"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "warranty",
+            "heading": "5-Year Warranty",
+            "subtext": "Comprehensive international movement cover"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "engraving",
+            "heading": "Bespoke Engraving",
+            "subtext": "Complimentary custom caseback initials"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

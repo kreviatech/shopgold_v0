@@ -1,0 +1,293 @@
+{%- style -%}
+  .watch-reviews-{{ section.id }} {
+    background-color: var(--watch-dark-base);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+    border-top: 1px solid rgba(197, 160, 89, 0.15);
+  }
+
+  .watch-reviews__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .watch-reviews__header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 5rem auto;
+  }
+
+  .watch-reviews__title {
+    font-size: clamp(2.6rem, 3.8vw, 4.2rem);
+    color: #FFFFFF;
+    margin: 0 0 1.4rem 0;
+  }
+
+  .watch-reviews__desc {
+    font-size: 1.5rem;
+    color: var(--watch-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .watch-reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .watch-reviews__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .watch-rev-card {
+    background: var(--watch-dark-card);
+    border: 1px solid var(--watch-border-card);
+    border-radius: 4px;
+    padding: 3rem 2.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.35s ease;
+  }
+
+  .watch-rev-card:hover {
+    border-color: var(--watch-border-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(197, 160, 89, 0.1);
+  }
+
+  .watch-rev-card__stars {
+    display: flex;
+    gap: 0.4rem;
+    color: var(--watch-gold-primary);
+    margin-bottom: 2rem;
+  }
+
+  .watch-rev-card__stars svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .watch-rev-card__quote {
+    font-size: 1.45rem;
+    line-height: 1.7;
+    color: var(--watch-text-primary);
+    margin: 0 0 2.4rem 0;
+    font-style: italic;
+    font-family: Georgia, serif;
+  }
+
+  .watch-rev-card__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .watch-rev-card__author {
+    font-family: var(--watch-font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--watch-gold-light);
+    margin: 0;
+  }
+
+  .watch-rev-card__meta {
+    font-size: 1.15rem;
+    color: var(--watch-text-muted);
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .watch-rev-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    color: #4ADE80;
+    margin-top: 0.4rem;
+    font-weight: 600;
+  }
+
+  .watch-rev-card__badge svg {
+    width: 14px;
+    height: 14px;
+  }
+{%- endstyle -%}
+
+<section class="watch-reviews-{{ section.id }} color-scheme-1" aria-label="Collector Testimonials">
+  <div class="watch-reviews__container">
+    <div class="watch-reviews__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="watch-eyebrow">
+          <span>{{ section.settings.eyebrow | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      <h2 class="watch-reviews__title">
+        {{ section.settings.heading | escape }}
+      </h2>
+
+      {%- if section.settings.description != blank -%}
+        <p class="watch-reviews__desc">
+          {{ section.settings.description | escape }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="watch-reviews__grid">
+      {%- for block in section.blocks -%}
+        <div class="watch-rev-card" {{ block.shopify_attributes }}>
+          <div>
+            <div class="watch-rev-card__stars" aria-label="5 out of 5 stars">
+              {%- for i in (1..5) -%}
+                <svg viewBox="0 0 24 24">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              {%- endfor -%}
+            </div>
+
+            <p class="watch-rev-card__quote">
+              "{{ block.settings.quote | escape }}"
+            </p>
+          </div>
+
+          <div class="watch-rev-card__footer">
+            <h3 class="watch-rev-card__author">{{ block.settings.author | escape }}</h3>
+            <p class="watch-rev-card__meta">{{ block.settings.model | escape }} &bull; {{ block.settings.location | escape }}</p>
+            <div class="watch-rev-card__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <span>Verified Collector</span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Watch Collector Reviews",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "THE COLLECTOR'S CIRCLE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "VOICES OF DISTINCTION"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Authentic impressions from passionate horologists and collectors across the globe."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Collector Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review Quote",
+          "default": "The finishing on the bezel and the weight of the solid oyster links surpass timepieces in my collection costing three times as much. Absolute perfection."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Collector Name",
+          "default": "Marcus Sterling"
+        },
+        {
+          "type": "text",
+          "id": "model",
+          "label": "Timepiece Model",
+          "default": "Chronomaster Apex 42mm"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Zurich, Switzerland"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Watch Collector Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "quote": "The dial depth under the double anti-reflective sapphire is hypnotic. You feel like you can reach directly through to the faceted hands.",
+            "author": "Lord Alexander Vance",
+            "model": "Tourbillon Skeleton Noir",
+            "location": "London, UK"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "The finishing on the bezel and the weight of the solid oyster links surpass timepieces in my collection costing three times as much. Absolute perfection.",
+            "author": "Marcus Sterling",
+            "model": "Chronomaster Apex 42mm",
+            "location": "Zurich, Switzerland"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "Uncompromising accuracy on my wrist every single day. The customer concierge kept me informed during each testing phase in Geneva.",
+            "author": "Henrietta De Witt",
+            "model": "Diver Automatic 300M",
+            "location": "Monaco"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

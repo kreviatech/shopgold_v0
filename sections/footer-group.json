@@ -1,0 +1,61 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand_info": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "menu_collections": {
+          "type": "link_list",
+          "settings": {
+            "heading": "HOROLOGY SERIES",
+            "menu": "main-menu"
+          }
+        },
+        "menu_services": {
+          "type": "link_list",
+          "settings": {
+            "heading": "CONCIERGE & CARE",
+            "menu": "footer"
+          }
+        },
+        "atelier_info": {
+          "type": "text",
+          "settings": {
+            "heading": "GENEVA ATELIER",
+            "subtext": "<p>Rue du Rhône 42, 1204 Genève, Switzerland<br>concierge@chronomaster.com<br>Mon – Sat: 10:00 – 19:00 CET</p>"
+          }
+        }
+      },
+      "block_order": [
+        "brand_info",
+        "menu_collections",
+        "menu_services",
+        "atelier_info"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "newsletter_enable": true,
+        "newsletter_heading": "THE COLLECTOR'S BULLETIN",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 60,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

@@ -1,0 +1,541 @@
+{%- style -%}
+  .watch-hero-{{ section.id }} {
+    position: relative;
+    background-color: var(--watch-dark-base);
+    background: radial-gradient(circle at 75% 40%, rgba(197, 160, 89, 0.12) 0%, rgba(11, 11, 14, 0.98) 60%), #0B0B0E;
+    color: var(--watch-text-primary);
+    overflow: hidden;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+  }
+
+  .watch-hero__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+  }
+
+  .watch-hero__container {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .watch-hero__container {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 6rem;
+      min-height: calc(85vh - 100px);
+    }
+  }
+
+  .watch-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .watch-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--watch-gold-light);
+    margin-bottom: 1.8rem;
+  }
+
+  .watch-hero__eyebrow-diamond {
+    color: var(--watch-gold-primary);
+    font-size: 0.8em;
+  }
+
+  .watch-hero__title {
+    font-family: var(--watch-font-heading);
+    font-size: clamp(3.2rem, 5vw, 6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 2rem 0;
+    color: #FFFFFF;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+  }
+
+  .watch-hero__title .gold-highlight {
+    background: var(--watch-gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline;
+  }
+
+  .watch-hero__description {
+    font-size: clamp(1.4rem, 1.8vw, 1.7rem);
+    line-height: 1.7;
+    color: var(--watch-text-secondary);
+    margin: 0 0 3.2rem 0;
+    max-width: 580px;
+    font-weight: 300;
+  }
+
+  .watch-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin-bottom: 4rem;
+  }
+
+  .watch-hero__actions .button {
+    padding: 1.5rem 3.4rem;
+    font-size: 1.3rem;
+  }
+
+  .watch-hero__specs-ribbon {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  @media screen and (min-width: 750px) {
+    .watch-hero__specs-ribbon {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .watch-hero__spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .watch-hero__spec-val {
+    font-family: var(--watch-font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--watch-gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  .watch-hero__spec-lbl {
+    font-size: 1.1rem;
+    color: var(--watch-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Watch Visual Side */
+  .watch-hero__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .watch-hero__glow-disc {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.18) 0%, rgba(197, 160, 89, 0.03) 55%, transparent 70%);
+    border: 1px dashed rgba(197, 160, 89, 0.25);
+    animation: watchSpin 40s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes watchSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .watch-hero__image-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 440px;
+    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85));
+    transition: transform 0.5s ease;
+  }
+
+  .watch-hero__image-wrapper:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  .watch-hero__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .watch-hero__badge-card {
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
+    background: rgba(20, 20, 25, 0.92);
+    border: 1px solid var(--watch-border-gold);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem 1.8rem;
+    border-radius: 4px;
+    z-index: 3;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  }
+
+  .watch-hero__badge-title {
+    font-family: var(--watch-font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--watch-gold-light);
+    letter-spacing: 0.12em;
+    margin: 0;
+  }
+
+  .watch-hero__badge-sub {
+    font-size: 1rem;
+    color: var(--watch-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0.3rem 0 0 0;
+  }
+{%- endstyle -%}
+
+<section class="watch-hero-{{ section.id }} color-scheme-1" aria-label="{{ section.settings.heading | escape }}">
+  {%- if section.settings.image != blank -%}
+    {{
+      section.settings.image
+      | image_url: width: 2400
+      | image_tag:
+        loading: 'eager',
+        class: 'watch-hero__bg-image',
+        alt: section.settings.heading,
+        widths: '550, 1100, 1600, 2000, 2400'
+    }}
+  {%- endif -%}
+
+  <div class="watch-hero__container">
+    <div class="watch-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="watch-hero__eyebrow">
+          <span class="watch-hero__eyebrow-diamond">&#9670;</span>
+          <span>{{ section.settings.eyebrow | escape }}</span>
+          <span class="watch-hero__eyebrow-diamond">&#9670;</span>
+        </div>
+      {%- endif -%}
+
+      <h1 class="watch-hero__title">
+        {{ section.settings.heading | replace: '[gold]', '<span class="gold-highlight">' | replace: '[/gold]', '</span>' }}
+      </h1>
+
+      {%- if section.settings.description != blank -%}
+        <p class="watch-hero__description">
+          {{ section.settings.description | escape }}
+        </p>
+      {%- endif -%}
+
+      <div class="watch-hero__actions">
+        {%- if section.settings.button_label_1 != blank -%}
+          <a
+            href="{{ section.settings.button_link_1 | default: routes.all_products_collection_url }}"
+            class="button button--primary"
+          >
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.button_label_2 != blank -%}
+          <a
+            href="{{ section.settings.button_link_2 | default: '#heritage' }}"
+            class="button button--secondary"
+          >
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="watch-hero__specs-ribbon">
+        <div class="watch-hero__spec-item">
+          <span class="watch-hero__spec-val">{{ section.settings.spec_1_val }}</span>
+          <span class="watch-hero__spec-lbl">{{ section.settings.spec_1_lbl }}</span>
+        </div>
+        <div class="watch-hero__spec-item">
+          <span class="watch-hero__spec-val">{{ section.settings.spec_2_val }}</span>
+          <span class="watch-hero__spec-lbl">{{ section.settings.spec_2_lbl }}</span>
+        </div>
+        <div class="watch-hero__spec-item">
+          <span class="watch-hero__spec-val">{{ section.settings.spec_3_val }}</span>
+          <span class="watch-hero__spec-lbl">{{ section.settings.spec_3_lbl }}</span>
+        </div>
+        <div class="watch-hero__spec-item">
+          <span class="watch-hero__spec-val">{{ section.settings.spec_4_val }}</span>
+          <span class="watch-hero__spec-lbl">{{ section.settings.spec_4_lbl }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="watch-hero__visual">
+      <div class="watch-hero__glow-disc" aria-hidden="true"></div>
+      <div class="watch-hero__image-wrapper">
+        {%- if section.settings.featured_watch_image != blank -%}
+          {{
+            section.settings.featured_watch_image
+            | image_url: width: 900
+            | image_tag:
+              loading: 'eager',
+              class: 'watch-hero__image',
+              alt: 'Master Chronograph Timepiece',
+              widths: '320, 600, 900'
+          }}
+        {%- else -%}
+          <!-- High-End Luxury Chronograph Vector Masterpiece -->
+          <svg class="watch-hero__image" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Chronometer Masterpiece Graphic">
+            <defs>
+              <radialGradient id="caseGoldGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FCEAB3"/>
+                <stop offset="45%" stop-color="#C5A059"/>
+                <stop offset="85%" stop-color="#7B5B21"/>
+                <stop offset="100%" stop-color="#3F2D0F"/>
+              </radialGradient>
+              <linearGradient id="bezelDarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#24242A"/>
+                <stop offset="50%" stop-color="#0F0F13"/>
+                <stop offset="100%" stop-color="#1A1A22"/>
+              </linearGradient>
+              <radialGradient id="dialGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#17171E"/>
+                <stop offset="70%" stop-color="#0A0A0D"/>
+                <stop offset="100%" stop-color="#040405"/>
+              </radialGradient>
+              <linearGradient id="strapGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#18181D"/>
+                <stop offset="25%" stop-color="#2B2B33"/>
+                <stop offset="50%" stop-color="#3D3D47"/>
+                <stop offset="75%" stop-color="#2B2B33"/>
+                <stop offset="100%" stop-color="#18181D"/>
+              </linearGradient>
+            </defs>
+            <!-- Integrated Bracelet Top -->
+            <path d="M190 20 L310 20 L300 130 L200 130 Z" fill="url(#strapGrad)" stroke="#C5A059" stroke-width="1.5"/>
+            <line x1="190" y1="50" x2="310" y2="50" stroke="#C5A059" stroke-width="1" stroke-opacity="0.3"/>
+            <line x1="195" y1="85" x2="305" y2="85" stroke="#C5A059" stroke-width="1" stroke-opacity="0.3"/>
+            <!-- Integrated Bracelet Bottom -->
+            <path d="M200 370 L300 370 L310 480 L190 480 Z" fill="url(#strapGrad)" stroke="#C5A059" stroke-width="1.5"/>
+            <line x1="195" y1="415" x2="305" y2="415" stroke="#C5A059" stroke-width="1" stroke-opacity="0.3"/>
+            <line x1="190" y1="450" x2="310" y2="450" stroke="#C5A059" stroke-width="1" stroke-opacity="0.3"/>
+            <!-- Crown & Pushers -->
+            <rect x="424" y="235" width="22" height="30" rx="3" fill="url(#caseGoldGrad)" stroke="#E5C37A" stroke-width="1"/>
+            <rect x="415" y="175" width="16" height="22" rx="2" fill="url(#caseGoldGrad)"/>
+            <rect x="415" y="303" width="16" height="22" rx="2" fill="url(#caseGoldGrad)"/>
+            <!-- Outer Oyster Case (44mm representation) -->
+            <circle cx="250" cy="250" r="185" fill="url(#caseGoldGrad)" stroke="#FFFFFF" stroke-width="0.8" stroke-opacity="0.4"/>
+            <!-- Fluted Bezel Ring -->
+            <circle cx="250" cy="250" r="172" fill="url(#bezelDarkGrad)" stroke="#C5A059" stroke-width="3"/>
+            <circle cx="250" cy="250" r="162" fill="none" stroke="#C5A059" stroke-width="1" stroke-dasharray="4 6"/>
+            <!-- Sapphire Crystal & Deep Sunburst Dial -->
+            <circle cx="250" cy="250" r="150" fill="url(#dialGrad)" stroke="#C5A059" stroke-width="1.5"/>
+            <!-- Hour Indices (Gold Batons) -->
+            <g stroke="#E5C37A" stroke-width="4" stroke-linecap="round">
+              <line x1="250" y1="110" x2="250" y2="128"/>
+              <line x1="390" y1="250" x2="372" y2="250"/>
+              <line x1="250" y1="390" x2="250" y2="372"/>
+              <line x1="110" y1="250" x2="128" y2="250"/>
+              <line x1="320" y1="128" x2="311" y2="143" stroke-width="2.5"/>
+              <line x1="372" y1="180" x2="357" y2="189" stroke-width="2.5"/>
+              <line x1="372" y1="320" x2="357" y2="311" stroke-width="2.5"/>
+              <line x1="320" y1="372" x2="311" y2="357" stroke-width="2.5"/>
+              <line x1="180" y1="372" x2="189" y2="357" stroke-width="2.5"/>
+              <line x1="128" y1="320" x2="143" y2="311" stroke-width="2.5"/>
+              <line x1="128" y1="180" x2="143" y2="189" stroke-width="2.5"/>
+              <line x1="180" y1="128" x2="189" y2="143" stroke-width="2.5"/>
+            </g>
+            <!-- Sub-Dials (Chronograph 3-Eye Layout) -->
+            <circle cx="200" cy="250" r="32" fill="#111116" stroke="#C5A059" stroke-width="1"/>
+            <circle cx="300" cy="250" r="32" fill="#111116" stroke="#C5A059" stroke-width="1"/>
+            <circle cx="250" cy="305" r="32" fill="#111116" stroke="#C5A059" stroke-width="1"/>
+            <!-- Dial Markings / Brand Text -->
+            <text x="250" y="180" text-anchor="middle" fill="#E5C37A" font-family="Cinzel, serif" font-size="13" font-weight="700" letter-spacing="3">CHRONOMASTER</text>
+            <text x="250" y="196" text-anchor="middle" fill="#A3A3AD" font-family="sans-serif" font-size="7" letter-spacing="2">OFFICIAL CHRONOMETER</text>
+            <text x="250" y="206" text-anchor="middle" fill="#A3A3AD" font-family="sans-serif" font-size="6" letter-spacing="1.5">300m / 1000ft</text>
+            <!-- Hands (Facet Diamond Cut) -->
+            <polygon points="246,250 250,150 254,250 250,265" fill="#FCEAB3" stroke="#987635" stroke-width="0.8"/>
+            <polygon points="247,250 250,185 253,250 250,260" fill="#E5C37A" stroke="#987635" stroke-width="0.8" transform="rotate(50 250 250)"/>
+            <!-- Gold Second Hand with Red Arrow Tip -->
+            <line x1="250" y1="270" x2="250" y2="120" stroke="#E5C37A" stroke-width="1.5"/>
+            <polygon points="247,125 250,113 253,125" fill="#D4AF37"/>
+            <circle cx="250" cy="250" r="5" fill="#E5C37A" stroke="#000000" stroke-width="1"/>
+          </svg>
+        {%- endif -%}
+
+        <div class="watch-hero__badge-card">
+          <p class="watch-hero__badge-title">SWISS CALIBRE 4130</p>
+          <p class="watch-hero__badge-sub">28,800 VPH &bull; 72H RESERVE</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Watch Hero Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "HAUTE HORLOGERIE • GENÈVE EDITION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "THE ART OF [gold]TIMELESS[/gold] PRECISION"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Handcrafted Swiss mechanical chronometers built with aerospace-grade forged titanium, anti-reflective sapphire crystal, and 72-hour autonomous power reserve."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background Image Opacity",
+      "default": 25
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_watch_image",
+      "label": "Featured Watch Image (Transparent PNG recommended)"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "First Button Label",
+      "default": "EXPLORE TIMEPIECES"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "First Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Second Button Label",
+      "default": "DISCOVER HERITAGE"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Second Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Key Specifications Ribbon"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_val",
+      "label": "Spec 1 Value",
+      "default": "300 METERS"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_lbl",
+      "label": "Spec 1 Label",
+      "default": "Water Resistance"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_val",
+      "label": "Spec 2 Value",
+      "default": "COSC CERTIFIED"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_lbl",
+      "label": "Spec 2 Label",
+      "default": "Chronometer Standard"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_val",
+      "label": "Spec 3 Value",
+      "default": "72 HOURS"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_lbl",
+      "label": "Spec 3 Label",
+      "default": "Power Reserve"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_val",
+      "label": "Spec 4 Value",
+      "default": "5-YEAR"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_lbl",
+      "label": "Spec 4 Label",
+      "default": "Global Warranty"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 160,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 160,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Watch Hero Banner"
+    }
+  ]
+}
+{% endschema %}
