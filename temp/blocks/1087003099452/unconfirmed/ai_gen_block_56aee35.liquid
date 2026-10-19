@@ -1,0 +1,166 @@
+{% doc %}
+  @prompt
+    i needa secondary menu in wich chosen collection is shown as menu i.e i have 8 collection i need 6 as a menu so i can chose any 6
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-collection-menu-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    color: {{ block.settings.text_color }};
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.vertical_padding }}px 16px;
+  }
+
+  .ai-collection-menu-{{ ai_gen_id }}__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: {{ block.settings.alignment }};
+    gap: 12px 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ai-collection-menu-{{ ai_gen_id }}__link {
+    display: inline-block;
+    padding: 8px 2px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.4;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .ai-collection-menu-{{ ai_gen_id }}__link:hover,
+  .ai-collection-menu-{{ ai_gen_id }}__link:focus-visible {
+    color: {{ block.settings.hover_color }};
+    border-bottom-color: currentColor;
+  }
+
+  .ai-collection-menu-{{ ai_gen_id }}__link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .ai-collection-menu-{{ ai_gen_id }}__empty {
+    margin: 0;
+    text-align: center;
+    color: {{ block.settings.text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-menu-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-collection-menu-{{ ai_gen_id }}__list {
+      gap: 8px 18px;
+    }
+  }
+{% endstyle %}
+
+<nav class="ai-collection-menu-{{ ai_gen_id }}" aria-label="{{ block.settings.accessibility_label | escape }}" {{ block.shopify_attributes }}>
+  {% if block.settings.collections != blank %}
+    <ul class="ai-collection-menu-{{ ai_gen_id }}__list">
+      {% for collection in block.settings.collections limit: 6 %}
+        {% if collection != blank %}
+          <li>
+            <a class="ai-collection-menu-{{ ai_gen_id }}__link" href="{{ collection.url }}">{{ collection.title | escape }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="ai-collection-menu-{{ ai_gen_id }}__empty">Choose up to six collections in this block’s settings.</p>
+  {% endif %}
+</nav>
+
+{% schema %}
+{
+  "name": "Collection menu",
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "collections",
+      "label": "Collections",
+      "limit": 6
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Menu label",
+      "default": "Shop collections"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#F5F5F7"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover text",
+      "default": "#DFB76C"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0B0B0E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection menu"
+    }
+  ],
+  "tag": null,
+  "class": "collection-menu-block"
+}
+{% endschema %}
